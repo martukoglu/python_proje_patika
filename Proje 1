@@ -1,0 +1,15 @@
+from collections.abc import Iterable
+
+def flatten(lst):
+    result = []
+    for item in lst:
+        if isinstance(item, Iterable) and not isinstance(item, (str, bytes)):
+            result.extend(flatten(item))
+        else:
+            result.append(item)
+    return result
+
+# Örnek Kullanım
+input1 = [[1,'a',['cat'],2],[[[3]],'dog'],4,5]
+output1 = flatten(input1)
+print(output1)  # [1, 'a', 'cat', 2, 3, 'dog', 4, 5]
